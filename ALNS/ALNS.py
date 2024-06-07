@@ -12,13 +12,13 @@ from stationInsertion import StationInsertion
 from stationRemoval import StationRemoval
 
 # PARAMETERS
-n_iter = 2500
+n_iter = 25000
 
-N_SR = 6
-N_RR = 200
-n_RR = 125
-N_C = 20
-N_S = 550
+N_SR = 60
+N_RR = 2000
+n_RR = 1250
+N_C = 200
+N_S = 5500
 
 sigma_1 = 25
 sigma_2 = 20
@@ -43,49 +43,48 @@ for file in files:
     SI = StationInsertion(data, rnd)
 
     previous_solution = construct_initial_solution(data)
-    best_solution = None
+    best_solution = previous_solution
     j = 1
 
 
     for k in range(n_iter):
         print(f"================== iteration {k} ===========================")
         current_solution = copy.deepcopy(previous_solution)
-        helper.check_feasibility(data, current_solution)
+        # helper.check_feasibility(data, current_solution)
         operations_used = []
         if j % N_SR == 0:
-            print("Station Removal")
+            # print("Station Removal")
             operation, current_solution = SR.station_removal(current_solution)
             operations_used.append((SR, operation))
-            print("Station Insertion")
+            # print("Station Insertion")
             operation, current_solution = SI.station_insertion(current_solution)
             operations_used.append((SI, operation))
         elif j % N_RR == 0:
             for i in range(n_RR):
-                print("Route Removal")
+                # print("Route Removal")
                 operation, removed, current_solution = CR.route_removal(current_solution)
                 operations_used.append((CR, operation))
-                print("Customer Insertion")
+                # print("Customer Insertion")
                 operation, current_solution = CI.customer_insertion(current_solution, removed)
                 operations_used.append((CI, operation))
         else:
-            print("Customer Removal")
+            # print("Customer Removal")
             operation, removed, current_solution = CR.customer_removal(current_solution)
-            print(f"removed: {removed}")
+            # print(f"removed: {removed}")
             operations_used.append((CR, operation))
-            print("Customer Insertion")
+            # print("Customer Insertion")
             operation, current_solution = CI.customer_insertion(current_solution, removed)
             operations_used.append((CI, operation))
 
         if current_solution.is_feasible and current_solution.is_battery_feasible:
             current_solution.remove_empty_routes()
             # helper.check_feasibility(data, current_solution)
-            print("solution is feasible!")
+            # print("solution is feasible!")
             current_cost = current_solution.total_distance
             score = 0
 
             if T == None:
                 T = temp_control_param * current_cost / math.log(2) / 100
-                best_solution = current_solution
             else:
                 T *= cooling_rate
 
@@ -93,14 +92,14 @@ for file in files:
                 previous_cost = previous_solution.total_distance
 
                 if current_cost < best_cost:
-                    print("new best solution found")
+                    # print("new best solution found")
                     best_solution = current_solution
                     score += sigma_1
                 elif current_cost < previous_cost:
-                    print("solution was improved")
+                    # print("solution was improved")
                     score += sigma_2
                 elif helper.simulated_annealing(rnd, T, best_solution, current_solution):
-                    print("solution was accepted according to SA")
+                    # print("solution was accepted according to SA")
                     score += sigma_3
 
             previous_solution = current_solution
@@ -109,11 +108,11 @@ for file in files:
         j += 1
 
         if j % N_C == 0:
-            print("updating CR and CI weights")
+            # print("updating CR and CI weights")
             helper.update_weights(CR)
             helper.update_weights(CI)
         if j % N_S == 0:
-            print("updating SR and SI weights")
+            # print("updating SR and SI weights")
             helper.update_weights(SR)
             helper.update_weights(SI)
 

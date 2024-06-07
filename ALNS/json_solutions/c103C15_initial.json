@@ -1,0 +1,187 @@
+{
+    "Total distance:": 567.9579587628377,
+    "Feasible?": true,
+    "Battery feasible?": true,
+    "All customers visited?": true,
+    "Time to obtain:": 0.0,
+    "Routes:": [
+        {
+            "Distance:": 173.51870558396698,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0.0
+                },
+                {
+                    "Location:": 14,
+                    "Arrival time:": 22.80350850198276,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 7,
+                    "Arrival time:": 136.5732371499922,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 16,
+                    "Arrival time:": 247.1887652780805,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 3,
+                    "Arrival time:": 347.1887652780805,
+                    "Charged quantity:": 37.66591295440324
+                },
+                {
+                    "Location:": 19,
+                    "Arrival time:": 484.5976871623591,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 3,
+                    "Arrival time:": 581.3058910948585,
+                    "Charged quantity:": 35.06844717800071
+                },
+                {
+                    "Location:": 12,
+                    "Arrival time:": 725.0161183480661,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 3,
+                    "Arrival time:": 891.0227155455452,
+                    "Charged quantity:": 23.034345451563027
+                },
+                {
+                    "Location:": 11,
+                    "Arrival time:": 979.0141520107675,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 1162.8058436014987,
+                    "Charged quantity:": 0
+                }
+            ]
+        },
+        {
+            "Distance:": 163.77540854052614,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0.0
+                },
+                {
+                    "Location:": 13,
+                    "Arrival time:": 21.540659228538015,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 20,
+                    "Arrival time:": 114.54065922853802,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 17,
+                    "Arrival time:": 261.79236009777594,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 4,
+                    "Arrival time:": 460.23154621172785,
+                    "Charged quantity:": 57.15534628806732
+                },
+                {
+                    "Location:": 5,
+                    "Arrival time:": 677.3488920593775,
+                    "Charged quantity:": 28.870062252458823
+                },
+                {
+                    "Location:": 6,
+                    "Arrival time:": 789.2327079861293,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 18,
+                    "Arrival time:": 1104.9857113690719,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 1224.717848863709,
+                    "Charged quantity:": 0
+                }
+            ]
+        },
+        {
+            "Distance:": 154.50611357970547,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0.0
+                },
+                {
+                    "Location:": 9,
+                    "Arrival time:": 35.05709628591621,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 5,
+                    "Arrival time:": 167.04536101718725,
+                    "Charged quantity:": 46.10245730310347
+                },
+                {
+                    "Location:": 15,
+                    "Arrival time:": 385.715010222273,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 8,
+                    "Arrival time:": 482.11813445970586,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 2,
+                    "Arrival time:": 579.1892022715713,
+                    "Charged quantity:": 30.653656276602
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 721.792731415367,
+                    "Charged quantity:": 0
+                }
+            ]
+        },
+        {
+            "Distance:": 76.15773105863909,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 10,
+                    "Arrival time:": 38.07886552931954,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 783.0788655293195,
+                    "Charged quantity:": 0
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,124 @@
+{
+    "objective:": 243.20345158179612,
+    "runtime:": 1547101.0,
+    "routes:": [
+        [
+            {
+                "location:": 8,
+                "arrival:": 321.0,
+                "load upon arrival:": 700.0,
+                "battery upon departure:": 46.70165060747995
+            },
+            {
+                "location:": 6,
+                "arrival:": 1808.0,
+                "load upon arrival:": 680.0,
+                "battery upon departure:": 27.003935003887747
+            },
+            {
+                "location:": 4,
+                "arrival:": 1924.9258240356728,
+                "load upon arrival:": 670.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 5,
+                "arrival:": 1924.9258240356728,
+                "load upon arrival:": 670.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 5,
+                "arrival:": 2321.160579987523,
+                "load upon arrival:": 60.0,
+                "battery upon departure:": 71.1717318330703
+            },
+            {
+                "location:": 10,
+                "arrival:": 2579.171850465464,
+                "load upon arrival:": 60.0,
+                "battery upon departure:": 60.12637081588304
+            },
+            {
+                "location:": 15,
+                "arrival:": 2704.0,
+                "load upon arrival:": 20.0,
+                "battery upon departure:": 25.29822128134704
+            },
+            {
+                "location:": 0,
+                "arrival:": 2819.298221281347,
+                "load upon arrival:": 0,
+                "battery upon departure:": 0
+            }
+        ],
+        [
+            {
+                "location:": 11,
+                "arrival:": 12.0,
+                "load upon arrival:": 700.0,
+                "battery upon departure:": 66.0880962103094
+            },
+            {
+                "location:": 14,
+                "arrival:": 108.08276253029815,
+                "load upon arrival:": 680.0,
+                "battery upon departure:": 60.00533368001118
+            },
+            {
+                "location:": 3,
+                "arrival:": 220.1054780758436,
+                "load upon arrival:": 670.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 3,
+                "arrival:": 220.1054780758436,
+                "load upon arrival:": 670.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 2,
+                "arrival:": 220.1054780758436,
+                "load upon arrival:": 670.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 3,
+                "arrival:": 661.328134508118,
+                "load upon arrival:": 100.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 2,
+                "arrival:": 661.328134508118,
+                "load upon arrival:": 100.0,
+                "battery upon departure:": 54.59244885140701
+            },
+            {
+                "location:": 9,
+                "arrival:": 853.0,
+                "load upon arrival:": 100.0,
+                "battery upon departure:": 52.35638087390723
+            },
+            {
+                "location:": 13,
+                "arrival:": 1078.0,
+                "load upon arrival:": 60.0,
+                "battery upon departure:": 33.25140769936442
+            },
+            {
+                "location:": 7,
+                "arrival:": 2737.0,
+                "load upon arrival:": 20.0,
+                "battery upon departure:": 22.07106781186548
+            },
+            {
+                "location:": 12,
+                "arrival:": 3085.0,
+                "load upon arrival:": 10.0,
+                "battery upon departure:": 15.0
+            }
+        ]
+    ]
+}

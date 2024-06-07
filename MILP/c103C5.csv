@@ -1,0 +1,17 @@
+objective,165.66674517467652
+runtime (milliseconds),76
+route1:
+location, arrival time, cargo remaining, battery upon arrival, battery upon departure
+3,10.0,200.0,67.75,67.75
+7,1131.0,190.0,62.75,62.75
+0,1236.0,0.0,0.0,0.0
+route2:
+location, arrival time, cargo remaining, battery upon arrival, battery upon departure
+4,30.805843601498736,20.0,30.805843601498722,30.805843601498722
+2,151.61168720299747,0.0,0.0,0.0
+0,1236.0,0.0,0.0,0.0
+route3:
+location, arrival time, cargo remaining, battery upon arrival, battery upon departure
+5,67.0,50.0,64.9437515251343,64.9437515251343
+6,1063.0,40.0,38.694942028320924,38.694942028320924
+0,1236.0,0.0,0.0,0.0

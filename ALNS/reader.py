@@ -80,13 +80,5 @@ class Reader:
 
         return closest_loc
 
-# path = "evrptw_instances//" + "c101c5" + ".xlsx"
-# data = Reader(path)
-#
-# dist = 2*data.distance_between(0, 4)
-# dist += data.distance_between(0, 5)
-# dist += data.distance_between(5, 2)
-# dist += data.distance_between(2, 6)
-# dist += data.distance_between(6, 0)
-# dist += 2*data.distance_between(0, 7)
-# dist += 2*data.distance_between(0, 8)
+
+

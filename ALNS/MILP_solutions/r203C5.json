@@ -1,0 +1,68 @@
+{
+    "objective:": 179.05589081805488,
+    "runtime:": 2.219,
+    "routes:": [
+        [
+            {
+                "location:": 8,
+                "arrival:": 509.1736332025474,
+                "load upon arrival:": 1000.0,
+                "battery upon departure:": 17.029386365926406
+            },
+            {
+                "location:": 2,
+                "arrival:": 536.2030195684737,
+                "load upon arrival:": 994.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 2,
+                "arrival:": 536.2030195684737,
+                "load upon arrival:": 994.0,
+                "battery upon departure:": 60.63
+            },
+            {
+                "location:": 7,
+                "arrival:": 578.9501243788791,
+                "load upon arrival:": 994.0,
+                "battery upon departure:": 47.59159518959471
+            },
+            {
+                "location:": 5,
+                "arrival:": 599.0,
+                "load upon arrival:": 971.0,
+                "battery upon departure:": 37.54171956847382
+            },
+            {
+                "location:": 3,
+                "arrival:": 639.4138126514911,
+                "load upon arrival:": 958.0,
+                "battery upon departure:": 0
+            },
+            {
+                "location:": 3,
+                "arrival:": 639.4138126514911,
+                "load upon arrival:": 41.0,
+                "battery upon departure:": 43.16610882689373
+            },
+            {
+                "location:": 9,
+                "arrival:": 676.2176818191676,
+                "load upon arrival:": 41.0,
+                "battery upon departure:": 27.51363298439521
+            },
+            {
+                "location:": 4,
+                "arrival:": 713.7313148035628,
+                "load upon arrival:": 11.0,
+                "battery upon departure:": 60.63
+            },
+            {
+                "location:": 6,
+                "arrival:": 759.9929601608097,
+                "load upon arrival:": 11.0,
+                "battery upon departure:": 44.077054642753154
+            }
+        ]
+    ]
+}

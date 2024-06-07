@@ -1,9 +1,13 @@
+import matplotlib.pyplot as plt
 import math
 import json
 import numpy as np
 import pandas as pd
+from reader import Reader
 
 def excel_to_csv(excel_file):
+    """Writes the excel file sheets into separate csv files
+    :param excel_file: the name of the excel file"""
     excel_path = f"evrptw_instances//{excel_file}.xlsx"
 
     locations = pd.read_excel(excel_path, sheet_name="locations")
@@ -116,12 +120,12 @@ def check_feasibility(data, solution):
     print()
     print()
 
-def solution_to_JSON(solution, filename, time):
+def solution_to_JSON(solution, filename, time = 0.0):
     """saves the solution to a json file
     :param solution: solution object to save to json
     :param filename: file name to save to
     :param time: runtime of obtaining the solution"""
-    file_path = "json_solutions//" + filename + ".json"
+    file_path = "json_solutions//" + filename + "full_run.json"
     solution_dict = {}
     solution_dict["Total distance:"] = solution.total_distance
     solution_dict["Feasible?"] = solution.is_feasible
@@ -148,6 +152,7 @@ def solution_to_JSON(solution, filename, time):
 def get_small_instance_file_names():
     """Returns a list of file names for all small instances"""
     files = []
+
     files_c1 = ["c101C5", "c103C5", "c101C10", "c104C10", "c103C15", "c106C15"]
     files_c2 = ["c206C5", "c208C5", "c202C10", "c205C10", "c202C15", "c208C15"]
     files_r1 = ["r104C5", "r105C5", "r102C10", "r103C10", "r102C15", "r105C15"]
@@ -161,3 +166,140 @@ def get_small_instance_file_names():
     files.extend(files_rc1)
     files.extend(files_rc2)
     return files
+
+def convert_MILP_solution_to_JSON(filename):
+    """Converts the MILP solution from an excel file to a json file.
+    Only decision variables unequal to 0 were saved in the excel file.
+    The indexing is reverted to the order before dummies were added."""
+    reader = Reader("evrptw_instances//" + filename + ".xlsx")
+    n_service = reader.n_service
+    n_customer = reader.n_customer
+    n_dummy = n_service ** 2
+    delta = n_dummy - n_service
+    N = n_dummy + n_customer
+    print(f"N: {N}")
+    dict = {}
+
+    for i in range(1, n_dummy + 1):
+        dict[i] = (i + 2) // n_service
+    for i in range(n_dummy + 1, N + 1):
+        dict[i] = i - delta
+
+    arcs = []
+    load = {}
+    arrival = {}
+    battery_upon_arrival = {}
+    battery_upon_departure = {}
+
+    df = pd.read_csv("MILP_solutions//" + filename + ".csv", header=None, names=range(4))
+    print(df)
+    objective = df.iloc[0, 1]
+    runtime = int(df.iloc[1, 1]) / 1000
+
+    for i in range(2, len(df)):
+        if df.iloc[i, 0] == "x" and not math.isclose(df.iloc[i, 3], 0, abs_tol=1e-5):
+            arcs.append((int(df.iloc[i, 1]), int(df.iloc[i, 2])))
+        elif df.iloc[i, 0] == "u":
+            load[df.iloc[i, 1]] = df.iloc[i, 2]
+        elif df.iloc[i, 0] == "tau":
+            arrival[df.iloc[i, 1]] = df.iloc[i, 2]
+        elif df.iloc[i, 0] == "y":
+            battery_upon_arrival[df.iloc[i, 1]] = df.iloc[i, 2]
+        elif df.iloc[i, 0] == "Y":
+            battery_upon_departure[df.iloc[i, 1]] = df.iloc[i, 2]
+
+    arcs.sort(key=lambda x: x[0], reverse=False)
+    solution = {}
+    solution["objective:"] = objective
+    solution["runtime:"] = runtime
+    solution["routes:"] = []
+    current_idx = 0
+
+    while arcs[current_idx][0] == 0:
+        locations = []
+        current = arcs[current_idx][1]
+        while current != N + 1:
+            visit = {}
+            visit["location:"] = dict[current]
+            if current in arrival.keys():
+                visit["arrival:"] = arrival[current]
+            else:
+                visit["arrival:"] = 0
+            if current in load.keys():
+                visit["load upon arrival:"] = load[current]
+            else:
+                visit["load upon arrival:"] = 0
+            if current in battery_upon_arrival.keys():
+                battery = battery_upon_arrival[current]
+            else:
+                battery = 0
+            battery_upon_arrival[current] = battery
+            if current in battery_upon_departure.keys():
+                visit["battery upon departure:"] = battery_upon_departure[current]
+            else:
+                visit["battery upon departure:"] = battery
+            locations.append(visit)
+
+            for arc in arcs:
+                if arc[0] == current:
+                    current = arc[1]
+                    break
+
+        solution["routes:"].append(locations)
+        current_idx += 1
+
+    with open("MILP_solutions//" + filename + ".json", 'w') as json_file:
+        json.dump(solution, json_file, indent=4)
+
+def plot_results(results_file, instance_size):
+    df = pd.read_excel(results_file, instance_size)
+    bar_width = 0.2
+    index = range(len(df))
+
+    plt.figure(figsize=(14, 8))
+    plt.ylim(100, 700)
+
+    bars_initial = plt.bar(index, df['TD initial'], bar_width, label='Initial TD', color='#1f77b4')
+    bars_ALNS = plt.bar([i + bar_width for i in index], df['TD ALNS'], bar_width, label='ALNS TD', color='#2ca02c')
+    bars_GUROBI = plt.bar([i + bar_width * 2 for i in index], df['TD GUROBI'], bar_width, label='GUROBI TD', color='#17becf')
+
+    for idx, td in enumerate(df['TD ALNS comp']):
+        plt.hlines(td, idx + bar_width - bar_width / 2, idx + bar_width + bar_width / 2, colors='red', linestyles='dashed')
+
+    for idx, td in enumerate(df['TD GUROBI comp']):
+        plt.hlines(td, idx + bar_width * 2 - bar_width / 2, idx + bar_width * 2 + bar_width / 2, colors='red', linestyles='dashed')
+
+    # transparent_bars_ALNS = plt.bar([i + bar_width for i in index], df['TD ALNS comp'], bar_width, alpha=0.1, color='gray')
+    # transparent_bars_GUROBI = plt.bar([i + bar_width * 2 for i in index], df['TD GUROBI comp'], bar_width, alpha=0.1, color='gray')
+
+    plt.xlabel('Instance')
+    plt.ylabel('TD')
+    plt.xticks([i + bar_width for i in index], df['instance'])
+
+    for bar, num_vehicles in zip(bars_initial, df['vehicles initial']):
+        height = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2.0, height, f'{num_vehicles}', ha='center', va='bottom')
+
+    for bar, num_vehicles in zip(bars_ALNS, df['vehicles ALNS']):
+        height = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2.0, height, f'{num_vehicles}', ha='center', va='bottom')
+
+    for bar, num_vehicles in zip(bars_GUROBI, df['vehicles GUROBI']):
+        height = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2.0, height, f'{num_vehicles}', ha='center', va='bottom')
+
+    handles, labels = plt.gca().get_legend_handles_labels()
+    vehicles_handle = plt.Line2D([], [], color='white', label='Number of Vehicles (on top of bars)')
+    comparison_handle = plt.Line2D([], [], color='red', linestyle='dashed', label='Results of Keskin and Çatay')
+    handles.append(vehicles_handle)
+    handles.append(comparison_handle)
+    plt.legend(handles=handles)
+
+    plt.savefig(f'..//..//Figures//{instance_size}_TD_scaled.png')
+    plt.show()
+
+# plot_results("results.xlsx", "C15")
+
+# files = get_small_instance_file_names()
+# for file in files:
+#     convert_MILP_solution_to_JSON(file)

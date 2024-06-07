@@ -1,0 +1,52 @@
+{
+    "objective:": 136.68974680638544,
+    "runtime:": 391.0,
+    "routes:": [
+        [
+            {
+                "location:": 5,
+                "arrival:": 36.0,
+                "load upon arrival:": 25.0,
+                "battery upon departure:": 13.038404810405304
+            },
+            {
+                "location:": 2,
+                "arrival:": 59.038404810405325,
+                "load upon arrival:": 15.0,
+                "battery upon departure:": 51.70265860889617
+            },
+            {
+                "location:": 4,
+                "arrival:": 96.41430210755674,
+                "load upon arrival:": 15.0,
+                "battery upon departure:": 39.66106403010388
+            },
+            {
+                "location:": 1,
+                "arrival:": 146.07536613766064,
+                "load upon arrival:": 0,
+                "battery upon departure:": 0
+            }
+        ],
+        [
+            {
+                "location:": 6,
+                "arrival:": 20.615528128088386,
+                "load upon arrival:": 61.0,
+                "battery upon departure:": 36.10160904726788
+            },
+            {
+                "location:": 8,
+                "arrival:": 37.018652365521234,
+                "load upon arrival:": 35.0,
+                "battery upon departure:": 29.69848480983504
+            },
+            {
+                "location:": 7,
+                "arrival:": 166.0,
+                "load upon arrival:": 26.0,
+                "battery upon departure:": 18.38477631085028
+            }
+        ]
+    ]
+}

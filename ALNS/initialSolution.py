@@ -1,6 +1,8 @@
+import helper
 from solution import Solution
 from route import Route
 import copy
+from reader import Reader
 from stationInsertion import greedy_station_insertion
 
 
@@ -8,11 +10,11 @@ def construct_initial_solution(data):
     """constructs a feasible initial solution"""
     solution = Solution(data)
     customers_to_serve = set(data.type_range("c"))
-    # print("new route")
+    print("new route")
     feasible_route = Route(data)
     next_to_insert = data.find_closest(0, customers_to_serve)
     feasible_route.insert_at(next_to_insert, 1)
-    # print(f"inserted: {next_to_insert}")
+    print(f"inserted: {next_to_insert}")
     customers_to_serve.remove(next_to_insert)
 
     while len(customers_to_serve) > 0:
@@ -34,34 +36,34 @@ def construct_initial_solution(data):
 
         if best_insertion is not None:
             current_route = best_insertion
-            # print(f"inserted: {best_to_insert}")
+            print(f"inserted: {best_to_insert}")
             current_customers_to_serve.remove(best_to_insert)
         else:
-            # print("new route")
+            print("new route")
             solution.add_route(feasible_route)
             feasible_route = Route(data)
             next_to_insert = data.find_closest(0, customers_to_serve)
-            # print(f"inserted: {next_to_insert}")
+            print(f"inserted: {next_to_insert}")
             customers_to_serve.remove(next_to_insert)
             feasible_route.insert_at(next_to_insert, 1)
             current_route = copy.deepcopy(feasible_route)
             current_customers_to_serve = copy.deepcopy(customers_to_serve)
 
         if not current_route.is_battery_feasible:
-            # print("battery infeasible!")
+            print("battery infeasible!")
             while current_route.is_feasible and not current_route.is_battery_feasible:
                 to_insert = greedy_station_insertion(data, current_route)
                 if to_insert is None:
                     break
                 current_route.insert_at(*to_insert)
-                # print(f"inserted: {to_insert[0]}")
+                print(f"inserted: {to_insert[0]}")
             if not current_route.is_battery_feasible or not current_route.is_feasible:
-                # print("backtracking...")
+                print("backtracking...")
                 solution.add_route(feasible_route)
-                # print("new route")
+                print("new route")
                 feasible_route = Route(data)
                 next_to_insert = data.find_closest(0, customers_to_serve)
-                # print(f"inserted: {next_to_insert}")
+                print(f"inserted: {next_to_insert}")
                 customers_to_serve.remove(next_to_insert)
                 feasible_route.insert_at(next_to_insert, 1)
                 current_route = copy.deepcopy(feasible_route)
@@ -82,7 +84,18 @@ def construct_initial_solution(data):
 
 
 # testing...
-# file_names = ["rc101_21", "rc201_21"]
+
+path = "evrptw_instances//" + "c101c10" + ".xlsx"
+data = Reader(path)
+solution = construct_initial_solution(data)
+helper.check_feasibility(data, solution)
+# route = Route(data)
+# route.insert_at(3, 1)
+# route.insert_at(8, 2)
+# route.insert_at(7, 3)
+# route.print()
+
+# file_names = helper.get_small_instance_file_names()
 #
 # for file in file_names:
 #     path = "evrptw_instances//" + file + ".xlsx"

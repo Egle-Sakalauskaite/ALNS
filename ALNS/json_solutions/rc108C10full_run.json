@@ -1,0 +1,125 @@
+{
+    "Total distance:": 354.36854674919766,
+    "Feasible?": true,
+    "Battery feasible?": true,
+    "All customers visited?": true,
+    "Time to obtain:": 52.36892342567444,
+    "Routes:": [
+        {
+            "Distance:": 152.13963246770058,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0.0
+                },
+                {
+                    "Location:": 9,
+                    "Arrival time:": 38.47076812334269,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 6,
+                    "Arrival time:": 68.79898987322333,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 3,
+                    "Arrival time:": 89.97932976072228,
+                    "Charged quantity:": 69.45009788406497
+                },
+                {
+                    "Location:": 7,
+                    "Arrival time:": 153.07875414624584,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 2,
+                    "Arrival time:": 173.51906065515638,
+                    "Charged quantity:": 4.939534583635606
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 211.68082100676116,
+                    "Charged quantity:": 0
+                }
+            ]
+        },
+        {
+            "Distance:": 137.5857983923196,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0.0
+                },
+                {
+                    "Location:": 13,
+                    "Arrival time:": 7.615773105863909,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 11,
+                    "Arrival time:": 32.86606874731851,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 8,
+                    "Arrival time:": 80.87922436481493,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 4,
+                    "Arrival time:": 105.87922436481493,
+                    "Charged quantity:": 59.83579839231959
+                },
+                {
+                    "Location:": 12,
+                    "Arrival time:": 144.8676615803181,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 5,
+                    "Arrival time:": 182.070602597789,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 211.30598665946033,
+                    "Charged quantity:": 0
+                }
+            ]
+        },
+        {
+            "Distance:": 64.6431158891775,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 10,
+                    "Arrival time:": 11.180339887498949,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 14,
+                    "Arrival time:": 43.2602916254693,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 167.20248437620924,
+                    "Charged quantity:": 0
+                }
+            ]
+        }
+    ]
+}
