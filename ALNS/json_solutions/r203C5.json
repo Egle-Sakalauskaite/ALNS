@@ -1,9 +1,10 @@
 {
     "Total distance:": 179.05589081805476,
+    "Total battery degradation cost:": 0,
     "Feasible?": true,
     "Battery feasible?": true,
     "All customers visited?": true,
-    "Time to obtain:": 42.81483578681946,
+    "Time to obtain:": 302.135379076004,
     "Routes:": [
         {
             "Distance:": 179.05589081805476,

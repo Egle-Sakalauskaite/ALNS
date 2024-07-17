@@ -12,11 +12,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Helper {
 
+    /**
+     * reads a csv file into a two_layer list
+     * @param path: the path to the csv file
+     * @return a list, where each list inside is a separate row
+     * and each string in a that list is a separate value (in the column order)
+     */
     public static List<List<String>> readFile(String path) {
         String delimiter = ",";
         String line;
@@ -36,6 +40,11 @@ public class Helper {
         return lines;
     }
 
+    /**
+     * returns the number of stations in the instance
+     * @param lines: instance data as the output of readFile()
+     * @return the number of stations as int
+     */
     public static int nStations(List<List<String>> lines) {
         int count = 0;
 
@@ -47,6 +56,12 @@ public class Helper {
         return count;
     }
 
+    /**
+     * expands the output from readFile() by copying each list representing a station k times
+     * k = nStations (e.g. if instance had 3 stations, each station is replaced by 3 dummies, so 9 station dummies)
+     * @param path: he path to the csv file containing the locations sata
+     * @return expanded version of the data that includes dummies for the stations
+     */
     public static List<List<String>> expandDummies(String path) {
         List<List<String>> lines = readFile(path);
         List<List<String>> data = new ArrayList<>();
@@ -72,6 +87,12 @@ public class Helper {
         return data;
     }
 
+    /**
+     * returns coordinates of all locations
+     * @param data: instance data as the output of expandDummies()
+     * @return all coordinates as a list of arrays,
+     * where the first element of an array is x coordinate and the second is the y coordinate
+     */
     public static List<int[]> getCoordinates(List<List<String>> data) {
         List<int[]> coordinates = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
@@ -84,6 +105,11 @@ public class Helper {
         return coordinates;
     }
 
+    /**
+     * returns demands of all locations
+     * @param data: instance data as the output of expandDummies()
+     * @return all demands as a list of integers
+     */
     public static List<Integer> getDemands(List<List<String>> data) {
         List<Integer> demands = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
@@ -93,6 +119,12 @@ public class Helper {
         return demands;
     }
 
+    /**
+     * returns time windows of all locations
+     * @param data: instance data as the output of expandDummies()
+     * @return all time windows as a list of arrays,
+     * where first element in the array is ready time and the second is the due time
+     */
     public static List<int[]> getTimeWindows(List<List<String>> data) {
         List<int[]> timeWindows = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
@@ -105,6 +137,11 @@ public class Helper {
         return timeWindows;
     }
 
+    /**
+     * returns service timea of all locations
+     * @param data: instance data as the output of expandDummies()
+     * @return all service times as a list of integers
+     */
     public static List<Integer> getServiceTimes(List<List<String>> data) {
         List<Integer> serviceTimes = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
@@ -114,37 +151,68 @@ public class Helper {
         return serviceTimes;
     }
 
+    /**
+     * returns the battery capacity of the vehicle
+     * @param data: instance data as the output of expandDummies()
+     * @return battery capacity as a double
+     */
     public static double getBatteryCapacity(List<List<String>> data) {
         return Double.parseDouble(data.get(1).get(0));
     }
 
+    /**
+     * returns the load capacity of the vehicle
+     * @param data: instance data as the output of expandDummies()
+     * @return load capacity as a double
+     */
     public static double getLoadCapacity(List<List<String>> data) {
         return Double.parseDouble(data.get(1).get(1));
     }
 
+    /**
+     * returns the battery consumption rate of the vehicle
+     * @param data: instance data as the output of expandDummies()
+     * @return battery consumption rate as a double
+     */
     public static double getBatteryConsumptionRate(List<List<String>> data) {
         return Double.parseDouble(data.get(1).get(2));
     }
 
+    /**
+     * returns the battery recharging rate of the vehicle
+     * @ data: instance data as the output of expandDummies()
+     * @return battery recharging rate as a double
+     */
     public static double getRechargingRate(List<List<String>> data) {
         return Double.parseDouble(data.get(1).get(3));
     }
 
+    /**
+     * returns the velocity of the vehicle
+     * @param data: instance data as the output of expandDummies()
+     * @return velocity as a double
+     */
     public static double getVelocity(List<List<String>> data) {
         return Double.parseDouble(data.get(1).get(4));
     }
 
 
     /**
-     * Calculates the distance between two points i and j
-     * @param i location i coordinates (x, y)
-     * @param j location j coordinates (x, y)
+     * Calculates the Euclidean distance between two points i and j
+     * @param i: location i coordinates (x, y)
+     * @param j: location j coordinates (x, y)
      * @return the distance between i and j
      */
     public static double distance(int[] i, int[] j) {
+
         return Math.sqrt(Math.pow((i[0] - j[0]), 2) + Math.pow((i[1] - j[1]), 2));
     }
 
+    /**
+     * constructs a distance matrix
+     * @param data: instance data as the output of expandDummies()
+     * @return a 2D array, where the i,j th element is the distance between locations indexed i and j
+     */
     public static double[][] getDistanceMatrix(List<List<String>> data) {
         List<int[]> coordinates = getCoordinates(data);
         int N = coordinates.size();
@@ -164,6 +232,12 @@ public class Helper {
         return distances;
     }
 
+    /**
+     * converts the distance matrix into a travel time matrix
+     * @param distances: the distance matrix as returned by getDistanceMatrix()
+     * @param velocity: the velocity of the vehicle
+     * @return a 2D array, where the i,j th element is the travel time between locations indexed i and j
+     */
     public static double[][] getTravelTimeMatrix(double[][] distances, double velocity) {
         int N = distances.length;
         double[][] travelTimes = new double[N][N];
@@ -176,37 +250,36 @@ public class Helper {
         return travelTimes;
     }
 
-    public static Map<Integer, Integer> indexConverter(List<List<String>> data) {
-        Map<Integer, Integer> dict = new HashMap<>();
-        int nDummies = nStations(data);
-        int nStations = (int) Math.sqrt(nDummies);
-        int N = data.size();
-        int shift = nDummies - nStations;
-
-        dict.put(0, 0);
-
-        for (int i = 1; i <= nDummies ; i++) {
-            dict.put(i, (i + 2) / nStations);
-        }
-
-        for (int i = nDummies + 1; i < N - 1; i++) {
-            dict.put(i, i - shift);
-        }
-
-        dict.put(N - 1, 0);
-        return dict;
-    }
-
     /**
-     * Prints an array for inspection.
-     * @param array To be printed
+     * from the file of decision variables, constructs a binary arc traversal matrix,
+     * where 1 in position i, j indicates that an arc between locations i and j is traversed
+     * @param file: the name of the instance
+     * @param n: the number of locations (dummies included)
+     * @return a binary arc traversal matrix
      */
-    public static void print2DArray(double[][] array) {
-        for (double[] ints : array) {
-            for (double anInt : ints) {
-                System.out.print(anInt + " ");
+    public static int[][] getArcTraversalMatrix(String file, int n) {
+        String path = "./decision_variables/" + file + ".csv";
+        String delimiter = ",";
+        String line;
+        int[][] matrix = new int[n + 2][n + 2];
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            while((line = br.readLine()) != null){
+                List<String> values = Arrays.asList(line.split(delimiter));
+                if (values.get(0).equals("x")) {
+                    if (Math.abs(Double.parseDouble(values.get(3))) > 1e-5) {
+                        int i = Integer.parseInt(values.get(1));
+                        int j = Integer.parseInt(values.get(2));
+                        matrix[i][j] = 1;
+                    }
+                }
             }
-            System.out.println();
+        } catch (FileNotFoundException e){
+            System.out.println("File could not be found.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+            e.printStackTrace();
         }
+
+        return matrix;
     }
 }

@@ -1,3 +1,4 @@
+import config
 from locationVisit import LocationVisit
 import copy
 
@@ -12,6 +13,7 @@ class Route:
         self.battery_degradation_costs = 0
         self.visits.append(LocationVisit(data, 0, 0, data.load_capacity, data.battery_capacity))
         self.visits.append(LocationVisit(data, 0, 0, data.load_capacity, data.battery_capacity))
+        self.pr_strategy = config.PR_STRATEGY * data.battery_capacity
 
     @property
     def first_battery_violation_idx(self):
@@ -103,14 +105,14 @@ class Route:
         self.distance += change_in_distance
         charge_quantity = 0
 
-        if self.data.type[loc] == "f" and self.required_charge > 0:
-            charge_quantity = min(self.required_charge, available_battery_space)
+        if self.data.type[loc] == "f":
+            charge_quantity = min(self.pr_strategy, available_battery_space)
 
         if loc == pred.loc:
-            pred.charge_quantity += charge_quantity
+            pred.charge_quantity = self.data.battery_capacity - pred.battery_level_upon_arrival
             idx -= 1
         elif loc == suc.loc:
-            suc.charge_quantity += charge_quantity
+            suc.charge_quantity = self.data.battery_capacity - suc.battery_level_upon_arrival
             idx -= 1
         else:
             visit = LocationVisit(self.data, loc, arrival_time, load_level_upon_arrival, battery_level_upon_arrival, charge_quantity)
@@ -119,21 +121,17 @@ class Route:
         for i in range(idx + 1, len(self.visits)):
             self.update(i, load_level_difference)
 
-        if self.data.type[loc] == "c":
-            self.adjust_recharge(idx)
-
-    def adjust_recharge(self, idx):
-        """attempts to make the route battery feasible by increasing charge quantity in existing stations without causing time infeasibility
-        :param idx: position index of the newly inserted location, for which recharging at an earlier visited station is considered"""
         if not self.is_battery_feasible:
-            recharge_at = self.get_last_source_visit(idx)
+            battery_violation_idx = self.first_battery_violation_idx
+            last_source_visit_idx = self.get_last_source_visit(battery_violation_idx)
 
-            time_feasible_recharge_quantity = min(self.possible_charge_before_time_infeasible(recharge_at), self.required_charge)
-            if time_feasible_recharge_quantity > 0:
-                self.visits[recharge_at].charge_quantity += time_feasible_recharge_quantity
-                # print(f"INCREASE THE CHARGE IN {self.visits[recharge_at].loc} by {time_feasible_recharge_quantity}")
-                for i in range(recharge_at + 1, len(self.visits)):
-                    self.update(i, 0)
+            if last_source_visit_idx != 0:
+                time_feasible_charge = self.possible_charge_before_time_infeasible(last_source_visit_idx)
+                available_battery_space_upon_arrival = self.data.battery_capacity - self.visits[last_source_visit_idx].battery_level_upon_arrival
+                if available_battery_space_upon_arrival <= time_feasible_charge:
+                    self.visits[last_source_visit_idx].charge_quantity = available_battery_space_upon_arrival
+                    for i in range(last_source_visit_idx + 1, len(self.visits)):
+                        self.update(last_source_visit_idx, 0)
 
     def remove_visit(self, visit):
         """Removes the visit from the route
@@ -209,4 +207,3 @@ class Route:
             current_loc = loc
             print(f"distance to: {distance}")
             visit.print()
-

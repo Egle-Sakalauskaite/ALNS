@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import math
+import config
 
 class Reader:
     def __init__(self, path):
@@ -24,9 +25,14 @@ class Reader:
         self.recharging_rate = other['g'][0]
         self.velocity = other['v'][0]
         self.distance_matrix = self.get_distance_matrix()
+        self.LB = config.lb*self.battery_capacity
+        self.UB = config.ub*self.battery_capacity
+        self.W_L = config.W_L
+        self.W_H = config.W_H
 
     def number_of_service_points(self):
-        """calculates how many service points the instance has"""
+        """calculates how many service points the instance has
+        :return: number of service points in the solution"""
         count = 0
         for i in range(self.n):
             if self.type[i] == "f":
@@ -34,15 +40,19 @@ class Reader:
         return count
 
     def distance_between(self, i, j):
-        """returns the distance between i and j
+        """returns the distance between locations i and j
         :param i: first location's index
-        :param j: second location's index'"""
+        :param j: second location's index
+        :return: distance"""
         x_i = self.x[i]
         x_j = self.x[j]
         y_i = self.y[i]
         y_j = self.y[j]
         return math.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
+
     def get_distance_matrix(self):
+        """constructs a distance matrix, where i,j th element is
+        the distance between locations i and j"""
         distances = np.zeros((self.n, self.n))
 
         for i in range(self.n):
@@ -53,7 +63,8 @@ class Reader:
 
     def type_range(self, type="all"):
         """Gives the range of indexes for customers, sources or both, if not specified
-        :param type: 'c', if looking at customers, 'f', if looking at stations, 'all' by default"""
+        :param type: 'c', if looking at customers, 'f', if looking at stations, 'all' by default
+        :return the range of indexes of specified type"""
         if type == "f":
             return range(1, self.n_service + 1)
         elif type == "c":
@@ -63,8 +74,10 @@ class Reader:
 
     def find_closest(self, loc, available):
         """finds the closest location from available to location loc
+        available might be a range object of specific type of locations
         :param loc: the location index of location under consideration
-        :param available: a collection of locations from which we are looking for the closest one to loc"""
+        :param available: a collection of locations from which we are looking for the closest one to loc
+        :return the location index of the closest available location"""
         closest_loc = None
         closest_dist = 99999999999
 

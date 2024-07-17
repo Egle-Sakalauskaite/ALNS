@@ -9,9 +9,8 @@ class Route:
         self.data = data
         self.visits = []
         self.distance = 0
-        self.battery_degradation_costs = 0
-        self.visits.append(LocationVisit(data, 0, 0, data.load_capacity, data.battery_capacity))
-        self.visits.append(LocationVisit(data, 0, 0, data.load_capacity, data.battery_capacity))
+        self.visits.append(LocationVisit(data, 0, 0, data.load_capacity, data.UB))
+        self.visits.append(LocationVisit(data, 0, 0, data.load_capacity, data.UB))
 
     @property
     def first_battery_violation_idx(self):
@@ -19,6 +18,10 @@ class Route:
         for i, visit in enumerate(self.visits):
             if not visit.is_battery_feasible:
                 return i
+
+        if self.visits[-1].battery_level_upon_arrival < self.data.LB:
+            return len(self.visits) - 1
+
         return -1
 
     @property
@@ -34,12 +37,20 @@ class Route:
     @property
     def required_charge(self):
         """Calculates the amount vehicle needs to be charged in order to reach the depot battery empty"""
-        return max(0, self.distance * self.data.battery_consumption_rate - self.data.battery_capacity - self.total_charged_quantity)
+        return max(0, self.distance * self.data.battery_consumption_rate - self.data.UB - self.total_charged_quantity + self.data.LB)
+
+    @property
+    def battery_degradation_costs(self, start_idx=0):
+        """The costs of battery degradation as the sum of battery degradation costs of all visits"""
+        costs = 0
+        for i in range(start_idx, len(self.visits)):
+            costs += self.visits[i].battery_degradation_cost
+        return costs
 
     @property
     def total_cost(self):
-        """when battery degradation is ignored, the cost is just distance"""
-        return self.distance
+        """total cost as the sum of distance cost and battery degradation cost"""
+        return self.distance + self.battery_degradation_costs
 
     @property
     def is_feasible(self):
@@ -55,10 +66,14 @@ class Route:
         for visit in self.visits:
             if not visit.is_battery_feasible:
                 return False
+
+        if self.visits[-1].battery_level_upon_arrival < self.data.LB:
+            return False
+
         return True
 
     def get_last_source_visit(self, idx):
-        """returns the most recent visit to the station for position idx
+        """returns the most recent visit to the statiob for position idx
         :param idx: position index of the visit for which we look for last visit to the station
         :return: the route position idx of the most recent source visit"""
         for i in range(idx - 1, 0, -1):
@@ -201,6 +216,7 @@ class Route:
         print(f"is feasible? {self.is_feasible}")
         print(F"is battery feasible? {self.is_battery_feasible}")
         print(f"total route distance: {self.distance}")
+        print(f"total BD cost: {self.battery_degradation_costs}")
         print(f"total charged quantity: {self.total_charged_quantity}")
         current_loc = 0
         for visit in self.visits:
@@ -209,4 +225,3 @@ class Route:
             current_loc = loc
             print(f"distance to: {distance}")
             visit.print()
-

@@ -1,4 +1,5 @@
 import math
+import config
 
 
 class LocationVisit:
@@ -42,8 +43,7 @@ class LocationVisit:
     def charge_quantity(self, charge_quantity):
         """Charging is not allowed at customer locations
         charged quantity must be positive
-        any attempted charge above batteries capacity will be reduced
-        :param charge_quantity: new charge quantity"""
+        any attempted charge above batteries capacity will be reduced"""
         if charge_quantity > 0 and self.data.type[self.loc] == "c":
             raise ValueError("Cannot charge at customer locations")
 
@@ -53,6 +53,18 @@ class LocationVisit:
         charge_quantity = min(charge_quantity, self.data.battery_capacity - self.battery_level_upon_arrival)
 
         self._charge_quantity = charge_quantity
+
+    # Only for extension
+    @property
+    def battery_degradation_cost(self):
+        """Returns the cost of battery degradation by considering the battery level on arrival and departure
+         or 0 if the costs are not considered or if location is a customer"""
+        if not config.BATTERY_DEGRADATION or self.data.type[self.loc] == "c":
+            return 0
+        else:
+            under_LB = self.data.W_L * max(0, (self.data.LB - self.battery_level_upon_arrival))
+            over_UB = self.data.W_H * max(0, self.battery_level_upon_departure - self.data.UB)
+            return under_LB + over_UB
 
     @property
     def is_feasible(self):
@@ -72,13 +84,15 @@ class LocationVisit:
     def update(self, new_arrival_time, load_level_difference, new_battery_level):
         """updates attributes: arrival time, load level upon departure, battery level upon arrival
         all other characteristics are properties and will be updated once accessed
-        :param new_arrival_time: new arrival time in minutes
-        :param load_level_difference: decrease (negative)/increase (positive) in load upon arrival
-        :param new_battery_level: new battery level when vehicle arrives
+        :param new_arrival_time: new time of arrival
+        :param load_level_difference: increase (positive) or decrease (negative) in load level on arrival:
+        :param new_battery_level: new battery level upon arrival
         """
         self.arrival_time = new_arrival_time
         self.load_level_upon_departure += load_level_difference
         self.battery_level_upon_arrival = new_battery_level
+        self._charge_quantity = min(self._charge_quantity, self.data.battery_capacity - self.battery_level_upon_arrival)
+
 
     def print(self):
         """Prints all relevant information on this visit"""
@@ -92,4 +106,5 @@ class LocationVisit:
         print(f"vehicle load: {self.load_level_upon_departure}")
         print(
             f"battery level: {self.battery_level_upon_arrival} (charged: +{self.charge_quantity})  - {self.battery_level_upon_departure}")
+        print(f"battery degradation cost: {self.battery_degradation_cost}")
 
