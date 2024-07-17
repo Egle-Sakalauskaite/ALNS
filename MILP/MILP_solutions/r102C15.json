@@ -1,0 +1,361 @@
+{
+    "Objective:": 420.6113829301888,
+    "Time to obtain:": 7200.299,
+    "Routes:": [
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 41.0,
+                    "Battery upon arrival:": 42.07747535568576,
+                    "Battery upon departure:": 42.07747535568576
+                },
+                {
+                    "Location:": 12,
+                    "Arrival:": 25.9154947194606,
+                    "Load upon arrival:": 41.0,
+                    "Battery upon arrival:": 40.23154621172777,
+                    "Battery upon departure:": 40.23154621172777
+                },
+                {
+                    "Location:": 15,
+                    "Arrival:": 51.147040931188,
+                    "Load upon arrival:": 34.0,
+                    "Battery upon arrival:": 25.0,
+                    "Battery upon departure:": 25.0
+                },
+                {
+                    "Location:": 7,
+                    "Arrival:": 86.14704093118841,
+                    "Load upon arrival:": 16.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 34.342805457777104
+                },
+                {
+                    "Location:": 9,
+                    "Arrival:": 123.0,
+                    "Load upon arrival:": 16.0,
+                    "Battery upon arrival:": 14.317821063276348,
+                    "Battery upon departure:": 14.317821063276348
+                },
+                {
+                    "Location:": 5,
+                    "Arrival:": 186.1777853138388,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 29.41088233970553
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 1,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 10,
+                    "Arrival:": 55.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 27.08898033750316,
+                    "Battery upon departure:": 27.08898033750316
+                },
+                {
+                    "Location:": 3,
+                    "Arrival:": 69.0,
+                    "Load upon arrival:": 41.0,
+                    "Battery upon arrival:": 9.348293560643706,
+                    "Battery upon departure:": 46.082987438196106
+                },
+                {
+                    "Location:": 13,
+                    "Arrival:": 98.0,
+                    "Load upon arrival:": 41.0,
+                    "Battery upon arrival:": 35.08298743819611,
+                    "Battery upon departure:": 35.08298743819611
+                },
+                {
+                    "Location:": 16,
+                    "Arrival:": 147.0,
+                    "Load upon arrival:": 36.0,
+                    "Battery upon arrival:": 27.802877548915703,
+                    "Battery upon departure:": 27.802877548915703
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 17,
+                    "Arrival:": 97.0,
+                    "Load upon arrival:": 18.0,
+                    "Battery upon arrival:": 17.911115550094557,
+                    "Battery upon departure:": 17.911115550094557
+                },
+                {
+                    "Location:": 11,
+                    "Arrival:": 125.0,
+                    "Load upon arrival:": 16.0,
+                    "Battery upon arrival:": 9.848857801796107,
+                    "Battery upon departure:": 9.848857801796107
+                },
+                {
+                    "Location:": 5,
+                    "Arrival:": 144.8488578017961,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                },
+                {
+                    "Location:": 5,
+                    "Arrival:": 144.8488578017961,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 18,
+                    "Arrival:": 40.93774225170142,
+                    "Load upon arrival:": 24.0,
+                    "Battery upon arrival:": 35.77718571414007,
+                    "Battery upon departure:": 35.77718571414007
+                },
+                {
+                    "Location:": 19,
+                    "Arrival:": 59.0,
+                    "Load upon arrival:": 14.0,
+                    "Battery upon arrival:": 27.714927965841525,
+                    "Battery upon departure:": 27.714927965841525
+                },
+                {
+                    "Location:": 21,
+                    "Arrival:": 111.0,
+                    "Load upon arrival:": 9.0,
+                    "Battery upon arrival:": 11.313708498984802,
+                    "Battery upon departure:": 11.313708498984802
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 20,
+                    "Arrival:": 87.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 26.67631842322497,
+                    "Battery upon departure:": 26.67631842322497
+                },
+                {
+                    "Location:": 14,
+                    "Arrival:": 104.81024967590665,
+                    "Load upon arrival:": 48.0,
+                    "Battery upon arrival:": 18.866068747318444,
+                    "Battery upon departure:": 18.866068747318444
+                },
+                {
+                    "Location:": 22,
+                    "Arrival:": 140.0,
+                    "Load upon arrival:": 20.0,
+                    "Battery upon arrival:": 14.866068747318486,
+                    "Battery upon departure:": 14.866068747318486
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        },
+        {
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival:": 0.0,
+                    "Load upon arrival:": 200.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 60.63
+                },
+                {
+                    "Location:": 23,
+                    "Arrival:": 118.0,
+                    "Load upon arrival:": 6.0,
+                    "Battery upon arrival:": 21.095023109729038,
+                    "Battery upon departure:": 21.095023109729038
+                },
+                {
+                    "Location:": 0,
+                    "Arrival:": 230.0,
+                    "Load upon arrival:": 0.0,
+                    "Battery upon arrival:": 0.0,
+                    "Battery upon departure:": 0.0
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "Total distance:": 128.88032522969186,
+    "Total battery degradation cost:": 25.260718686201365,
+    "Feasible?": true,
+    "Battery feasible?": true,
+    "All customers visited?": true,
+    "Time to obtain:": 545.9277255535126,
+    "Routes:": [
+        {
+            "Distance:": 128.88032522969186,
+            "Feasible": true,
+            "Battery feasible?": true,
+            "Visits:": [
+                {
+                    "Location:": 0,
+                    "Arrival time:": 0,
+                    "Charged quantity:": 9.094500000000004
+                },
+                {
+                    "Location:": 4,
+                    "Arrival time:": 24.15402060359221,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 8,
+                    "Arrival time:": 123.65863337187866,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 3,
+                    "Arrival time:": 146.65863337187866,
+                    "Charged quantity:": 35.472205054244235
+                },
+                {
+                    "Location:": 6,
+                    "Arrival time:": 178.60023362701938,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 2,
+                    "Arrival time:": 190.83630160451918,
+                    "Charged quantity:": 34.684831576059146
+                },
+                {
+                    "Location:": 5,
+                    "Arrival time:": 225.72041289678648,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 7,
+                    "Arrival time:": 253.74816927410643,
+                    "Charged quantity:": 0
+                },
+                {
+                    "Location:": 1,
+                    "Arrival time:": 428.8113883008419,
+                    "Charged quantity:": 13.250788599388475
+                },
+                {
+                    "Location:": 0,
+                    "Arrival time:": 435.30427471454226,
+                    "Charged quantity:": 0
+                }
+            ]
+        }
+    ]
+}
